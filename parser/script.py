@@ -3,9 +3,9 @@ from selenium.webdriver.common.by import By
 import time
 import pandas as pd
 
-df = pd.DataFrame(columns=["Название (РУ)", "Вид", "Год", "Ссылка на картинку"])
+df = pd.DataFrame(columns=["RussianName", "AnimeType", "ReleaseYear", "Cover"])
 
-data = {"Название (ру)": "Название (ру)", "Вид": "Вид", "Год": "Год", "Ссылка на картинку": "Ссылка на картинку"}
+data = {"RussianName": "RussianName", "AnimeType": "AnimeType", "ReleaseYear": "ReleaseYear", "Cover": "Cover"}
 df = pd.DataFrame([data])
 df.to_csv("animes_data.csv", mode='a', index=False, header=False)
 
@@ -32,10 +32,10 @@ for _ in range(int(total_cnt_of_pages)):
         img = article.find_element(By.TAG_NAME, "img")
         
         data = {
-            "Название (ру)": title_name_ru,
-            "Вид": spans[0].text,
-            "Год": spans[1].text,
-            "Ссылка на картинку": img.get_attribute("src")
+            "RussianName": title_name_ru,
+            "AnimeType": spans[0].text,
+            "ReleaseYear": spans[1].text,
+            "Cover": img.get_attribute("src")
             }
 
         df = pd.DataFrame([data])
